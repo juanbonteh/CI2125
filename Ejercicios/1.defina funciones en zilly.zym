@@ -1,0 +1,23 @@
+Z => Z not := fn(Z p) -> if(p, 0, 1);
+Z => Z => Z and := fn(Z p) -> fn(Z q) -> if(p, if(q, 1, 0), 0);
+Z => Z => Z or := fn(Z p) -> fn(Z q) -> if(p, 1, if(q, 1, 0));
+Z => Z => Z le := fn(Z n) -> fn(Z k) -> if(lt(n)(k), 0, 1);
+Z => Z => Z eq := fn(Z n) -> fn(Z k) -> if(sub(n)(k), 0, 1);
+Z => Z => Z ne := fn(Z n) -> fn(Z k) -> if(sub(n)(k), 1, 0);
+Z => Z => Z gt := fn(Z n) -> fn(Z k) -> lt(n)(k);
+Z => Z => Z ge := fn(Z n) -> fn(Z k) -> if(lt(n)(k), 0, 1);
+Z => Z chs := fn(Z n) -> sub(n)(0);
+Z => Z => Z add := fn(Z n) -> fn(Z k) -> sub(chs(n))(k);
+Z => Z => Z max := fn(Z x) -> fn(Z y) -> if(gt(x)(y), x, y);
+
+not(0)
+not(1)
+and(1)(1)
+and(1)(0)
+or(0)(1)
+le(4)(5)
+eq(3)(3)
+ne(3)(4)
+gt(5)(2)
+max(8)(5)
+add(4)(3)

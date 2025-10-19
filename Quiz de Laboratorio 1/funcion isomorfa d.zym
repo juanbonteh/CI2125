@@ -1,0 +1,14 @@
+Z => Z not := fn(Z p) -> if(p, 0, 1);
+Z => Z => Z and := fn(Z p) -> fn(Z q) -> if(p, if(q, 1, 0), 0);
+Z => Z => Z or := fn(Z p) -> fn(Z q) -> if(p, 1, if(q, 1, 0));
+Z => Z => Z nor := fn(Z a) -> fn(Z b) -> not(or(a)(b));
+
+Z => Z => Z => Z D := fn(Z x) -> fn(Z y) -> fn(Z z) -> or(nor(x)(y))(and(y)(z));
+
+D(1)(1)(0)
+D(1)(0)(1)
+D(1)(0)(0)
+D(0)(1)(1)
+D(0)(1)(0)
+D(0)(0)(1)
+D(0)(0)(0)
