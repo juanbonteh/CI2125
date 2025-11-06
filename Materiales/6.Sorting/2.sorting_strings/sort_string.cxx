@@ -10,8 +10,26 @@ using std::string;
 using std::vector;
 
 int min(int lb, int ub, const vector<string>& data) {
-    // @@@ TAREA: completar
-    return -1; // @@@ eliminen esta última línea: lo puse sólo para que compile
+    const int n = data.size();
+    if (n == 0) {
+        return -1;
+    }
+    if (lb < 0 || lb >= ub) {
+        return -1;
+    }
+    if (ub > n) {
+        return -1;
+    }
+
+    int mindex = lb;
+    string minimum = data[mindex];
+    for (int i = lb + 1; i < ub; ++i) {
+        if (data[i] < minimum) { // lexicográfico
+            mindex = i;
+            minimum = data[mindex];
+        }
+    }
+    return mindex;
 }
 
 int min(const vector<string>& data) {
@@ -24,5 +42,14 @@ int min(const vector<string>& data) {
 }
 
 void selection_sort(vector<string>& data) {
-    // @@@ TAREA: completar
+    const int n = data.size();
+    if (n == 0) return;
+
+    for (int i = 0; i < n - 1; ++i) {
+        int mindex = min(i, n, data);
+        // swap
+        string tmp = data[i];
+        data[i] = data[mindex];
+        data[mindex] = tmp;
+    }
 }

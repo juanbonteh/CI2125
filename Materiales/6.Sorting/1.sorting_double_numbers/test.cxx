@@ -49,10 +49,21 @@ void show(const char *label, const vector<double>& data) {
     // No se limiten a usar %f: usen uno de la forma %W.Df donde:
     // W es el ancho necesario para mostrar los números con el punto decimal bien alineado
     // D es el número de digitos a la derecha del punto decimal: sugiero D igual a 6
+    // muestra el vector
+    fprintf(stdout, "%s\n", label);
+    const int n = data.size();
+    // ancho 10 con 6 decimales (ajustable); asegura buena alineación
+    for (int i = 0; i < n; ++i) {
+        fprintf(stdout, "%4d: %10.6f\n", i, data[i]);
+    }
+    fprintf(stdout, "\n");
 }
 
 void run(int n) {
-    // @@@ TAREA: completar
+    vector<double> data = generate_vector(n);
+    show("datos antes:", data);
+    selection_sort(data);
+    show("datos despues:", data);
 }
 
 void bad_usage(const char *program) {
@@ -60,5 +71,17 @@ void bad_usage(const char *program) {
 }
 
 int main(int argc, const char *argv[]) {
-    // @@@ TAREA: completar
+    if (argc != 2) {
+        bad_usage(argv[0]);
+        return EXIT_FAILURE;
+    }
+
+    int n = atoi(argv[1]);
+    if (n < 0 || n >= 128) {
+        bad_usage(argv[0]);
+        return EXIT_FAILURE;
+    }
+
+    run(n);
+    return EXIT_SUCCESS;
 }
