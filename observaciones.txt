@@ -1,0 +1,39 @@
+------------------------------------
+-- Definicion de Funciones en Zilly
+------------------------------------
+
+- add: no realizado, 0/9 casos de prueba superados
+- t4: no realizado, 0/5 casos de prueba superados
+- t256: no realizado, 0/5 casos de prueba superados
+- implies: no realizado, 0/4 casos de prueba superados
+- min: no realizado, 0/4 casos de prueba superados
+
+------------------------------------
+-- Definicion de Funciones en C++
+------------------------------------
+
+- my_info: no realizado, 0/4 casos de prueba superados
+
+
+------------------------------------
+-- Tabla de Verdad
+------------------------------------
+
+Tabla incorrecta, la funcion que modela el circuito es and(or(x,y),nand(y,z))
+
+------------------------------------
+-- Circuito en Zilly
+------------------------------------
+
+- f: definicion incorrecta, 0/8 casos de prueba superados
+     se agradecen los casos de prueba! muestra buenas practicas probar todo.
+
+------------------------------------
+-- Circuito en C++
+------------------------------------
+
+- f: definicion incorrecta, 0/8 casos de prueba superados
+     pero buenos lazos para la impresion!
+     y la tabla esta bien estilizada.
+     Por estos detalles extra, puntaje parcial otorgado.
+     4/8
