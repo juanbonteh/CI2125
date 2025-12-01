@@ -1,0 +1,29 @@
+------------------------------------
+-- C
+------------------------------------
+
+Tamano 1 Pass
+Tamano 2 Pass
+Tamano 4 Pass
+Tamano 8 Pass
+
+
+------------------------------------
+-- D
+------------------------------------
+
+Tamano 1 Pass
+Tamano 2 Pass
+Tamano 4 Pass
+Tamano 8 Pass
+
+------------------------------------
+-- E
+------------------------------------
+
+test03: 0/1 Pass.
+test04: Suite completa, 3/3 Pass
+test05: Suite (casi) completa 6/6 Pass
+test06: Suite completa, 3/3 Pass.
+test07: Suite completa, 6/6 Pass.
+test08: Suite completa, 0/6 Pass. No se permite iteracion en Zilly.
