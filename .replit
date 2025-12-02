@@ -1,6 +1,6 @@
-modules = ["nix", "cpp"]
+modules = ["cpp-clang14", "nix", "c-clang14", "cpp-clang"]
 [agent]
-expertMode = false
+expertMode = true
 
 [nix]
 channel = "stable-25_05"
@@ -16,22 +16,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "simple app"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
 args = "cpp_build_and_run"
-
-[[workflows.workflow]]
-name = "simple app"
-author = "agent"
-
-[workflows.workflow.metadata]
-outputType = "console"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "g++ main.cpp -o main.sh ; ./main.sh"
 
 [[workflows.workflow]]
 name = "cpp_build_and_run"
