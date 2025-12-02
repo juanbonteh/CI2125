@@ -9,4 +9,5 @@ struct Query {
     static int q1();
     static int q2();
     static int q3();
+    static int q4();
 };
