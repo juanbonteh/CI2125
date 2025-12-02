@@ -178,11 +178,23 @@ int Query::q4() {
     const int max_year = 2046;
 
     const auto uc_index = build_uc_index();
+
+    // Filtrar estudiantes activos de electrónica.
+    unordered_set<string> activos_electronica;
+    for (const auto &estudiante : Estudiante::tabla()) {
+        if (estudiante.activo() && estudiante.carrera().str() == carrera_electronica) {
+            activos_electronica.insert(estudiante.carnet().str());
+        }
+    }
+
+    // Registrar quienes cursaron Matemáticas IV antes o durante el año objetivo.
     unordered_set<string> cursaron_mat_iv;
     unordered_map<string, int> uc_aprobadas;
-
     for (const auto &calificacion : Calificacion::tabla()) {
         string carnet = calificacion.carnet().str();
+        if (activos_electronica.find(carnet) == activos_electronica.end()) {
+            continue;
+        }
         if (calificacion.asignatura().str() == matematicas_iv && calificacion.year() <= max_year) {
             cursaron_mat_iv.insert(carnet);
         }
@@ -196,18 +208,8 @@ int Query::q4() {
         uc_aprobadas[carnet] += it->second;
     }
 
-    vector<pair<string, int>> resultado;
-    for (const auto &estudiante : Estudiante::tabla()) {
-        if (!estudiante.activo()) {
-            continue;
-        }
-        if (estudiante.carrera().str() != carrera_electronica) {
-            continue;
-        }
-        string carnet = estudiante.carnet().str();
-        if (cursaron_mat_iv.find(carnet) == cursaron_mat_iv.end()) {
-            continue;
-        }
+    vector<tuple<string, int>> resultado;
+    for (const auto &carnet : cursaron_mat_iv) {
         int uc = 0;
         auto it = uc_aprobadas.find(carnet);
         if (it != uc_aprobadas.end()) {
@@ -216,10 +218,11 @@ int Query::q4() {
         resultado.emplace_back(carnet, uc);
     }
 
-    fprintf(stdout, "UC aprobadas por estudiantes activos de Ing. Electrónica hasta %d (que cursaron Matemáticas IV): %zu\n",
-            max_year, resultado.size());
+    fprintf(stdout,
+            "UC aprobadas por estudiantes activos de Ing. Electrónica hasta %d (que cursaron Matemáticas IV):\n",
+            max_year);
     for (const auto &entrada : resultado) {
-        fprintf(stdout, "%s -> %d uc\n", entrada.first.c_str(), entrada.second);
+        fprintf(stdout, "(%s, %d)\n", std::get<0>(entrada).c_str(), std::get<1>(entrada));
     }
 
     return EXIT_SUCCESS;
