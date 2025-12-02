@@ -149,6 +149,10 @@ string Estudiante::nombre() const {
     return nombre_;
 }
 
+Codigo Estudiante::carrera() const {
+    return carrera_;
+}
+
 int Estudiante::year() const {
     return year_;
 }

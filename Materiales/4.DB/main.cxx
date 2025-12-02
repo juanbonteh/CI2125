@@ -233,6 +233,7 @@ static Options options = {
     MenuOption("q1", "query 1",         Query::q1               ),
     MenuOption("q2", "query 2",         Query::q2               ),
     MenuOption("q3", "query 3",         Query::q3               ),
+    MenuOption("q4", "query 4",         Query::q4               ),
 
     MenuOption(".", "salir",            despedida               )
 };
